@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.quxianggif.opensource
 
 import android.os.Bundle
@@ -22,6 +21,7 @@ import com.quxianggif.init.ui.SplashActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
+ * 开源版闪屏页面）启动页
  * 开源版闪屏Activity界面，在这里进行程序初始化操作。
  * @author guolin
  * @since 2018/12/18
@@ -33,5 +33,4 @@ class OpenSourceSplashActivity : SplashActivity() {
         setContentView(R.layout.activity_splash)
         logoView = logo
     }
-
 }

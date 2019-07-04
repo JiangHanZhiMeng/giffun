@@ -50,12 +50,11 @@ open class AboutActivity : BaseActivity() {
         }
         logo.setImageDrawable(GlobalUtil.getAppIcon())
         openSourceListTextView.setOnClickListener {
-            OpenSourceProjectsActivity.actionStart(this)
+            OpenSourceProjectsActivity.actionStart(this)//跳转到开源项目列表页面
         }
     }
 
     companion object {
-
         const val TAG = "AboutActivity"
 
         private val ACTION_VIEW_ABOUT = "${GifFun.getPackageName()}.ACTION_VIEW_ABOUT"

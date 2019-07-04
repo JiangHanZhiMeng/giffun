@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:indeterminate="true"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/loginInputElements"
@@ -148,10 +148,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginBottom="20dp"
+                    android:background="@drawable/phone_login_button_bg"
                     android:text="@string/login"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"
-                    android:background="@drawable/phone_login_button_bg"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

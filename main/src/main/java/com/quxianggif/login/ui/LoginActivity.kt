@@ -67,11 +67,14 @@ abstract class LoginActivity : AuthActivity() {
 
         private const val TAG = "LoginActivity"
 
-        @JvmStatic val START_WITH_TRANSITION = "start_with_transition"
+        @JvmStatic
+        val START_WITH_TRANSITION = "start_with_transition"
 
-        @JvmStatic val INTENT_HAS_NEW_VERSION = "intent_has_new_version"
+        @JvmStatic
+        val INTENT_HAS_NEW_VERSION = "intent_has_new_version"
 
-        @JvmStatic val INTENT_VERSION = "intent_version"
+        @JvmStatic
+        val INTENT_VERSION = "intent_version"
 
         private val ACTION_LOGIN = "${GifFun.getPackageName()}.ACTION_LOGIN"
 
@@ -80,10 +83,8 @@ abstract class LoginActivity : AuthActivity() {
         /**
          * 启动LoginActivity。
          *
-         * @param activity
-         *          原Activity的实例
-         * @param hasNewVersion
-         *          是否存在版本更新。
+         * @param activity 原Activity的实例
+         * @param hasNewVersion 是否存在版本更新。
          *
          */
         fun actionStart(activity: Activity, hasNewVersion: Boolean, version: Version?) {

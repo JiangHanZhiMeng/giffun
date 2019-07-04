@@ -33,7 +33,7 @@ import com.quxianggif.core.util.SharedUtil;
  */
 public class GifFun {
 
-    public static boolean isDebug = false;
+    public static boolean isDebug = true;
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
@@ -48,7 +48,7 @@ public class GifFun {
 
     private static int loginType = -1;
 
-    public static String BASE_URL = isDebug ? "http://192.168.31.177:3000" : "http://api.quxianggif.com";
+    public static String BASE_URL = !isDebug ? "http://192.168.31.177:3000" : "http://api.quxianggif.com";
 
     public static final int GIF_MAX_SIZE = 20 * 1024 * 1024;
 

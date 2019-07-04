@@ -26,6 +26,9 @@ import com.quxianggif.core.extension.showToast
 import com.quxianggif.core.util.GlobalUtil
 import com.quxianggif.settings.ui.AboutActivity
 
+/**
+ * 开源关于（页面）
+ */
 class OpenSourceAboutActivity : AboutActivity() {
 
     override fun setupViews() {

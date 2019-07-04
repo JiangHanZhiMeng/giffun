@@ -103,26 +103,26 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
         super.onCreate(savedInstanceState)
         activity = this
         weakRefActivity = WeakReference(this)
-        ActivityCollector.add(weakRefActivity)
+        ActivityCollector.add(weakRefActivity)//活动集合
         EventBus.getDefault().register(this)
     }
 
     override fun onResume() {
         super.onResume()
         isActive = true
-        MobclickAgent.onResume(this)
+        MobclickAgent.onResume(this)//友盟分析记录
     }
 
     override fun onPause() {
         super.onPause()
         isActive = false
-        MobclickAgent.onPause(this)
+        MobclickAgent.onPause(this)//友盟分析记录
     }
 
     override fun onDestroy() {
         super.onDestroy()
         activity = null
-        ActivityCollector.remove(weakRefActivity)
+        ActivityCollector.remove(weakRefActivity)//从活动集合中移除
         EventBus.getDefault().unregister(this)
     }
 
@@ -148,6 +148,7 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
     protected fun transparentStatusBar() {
         if (AndroidVersion.hasLollipop()) {
             val decorView = window.decorView
+            //让应用的主体内容占用系统状态栏的空间；
             decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             window.statusBarColor = Color.TRANSPARENT
         }
@@ -166,7 +167,7 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
             return
         }
         mListener = listener
-        val requestPermissionList = ArrayList<String>()
+        val requestPermissionList = ArrayList<String>()//请求权限集合
         for (permission in permissions) {
             if (ContextCompat.checkSelfPermission(activity!!, permission) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissionList.add(permission)
@@ -175,7 +176,7 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
         if (!requestPermissionList.isEmpty()) {
             ActivityCompat.requestPermissions(activity!!, requestPermissionList.toTypedArray(), 1)
         } else {
-            listener.onGranted()
+            listener.onGranted()//同意所有权限
         }
     }
 
@@ -193,7 +194,6 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
         } catch (e: Exception) {
             logWarn(TAG, e.message, e)
         }
-
     }
 
     /**
@@ -303,7 +303,7 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
     }
 
     fun closeProgressDialog() {
-        progressDialog?.let {
+        progressDialog?.let {//参考：https://blog.csdn.net/android_ming/article/details/79758241
             if (it.isShowing) {
                 it.dismiss()
             }
@@ -312,9 +312,8 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onMessageEvent(messageEvent: MessageEvent) {
-        if (messageEvent is ForceToLoginEvent) {
+        if (messageEvent is ForceToLoginEvent) {//强制登录
             if (isActive) { // 判断Activity是否在前台，防止非前台的Activity也处理这个事件，造成打开多个LoginActivity的问题。
-                // force to login
                 ActivityCollector.finishAll()
                 LoginActivity.actionStart(this, false, null)
             }
@@ -339,7 +338,7 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             1 -> if (grantResults.isNotEmpty()) {
-                val deniedPermissions = ArrayList<String>()
+                val deniedPermissions = ArrayList<String>()//拒绝权限集合
                 for (i in grantResults.indices) {
                     val grantResult = grantResults[i]
                     val permission = permissions[i]
@@ -377,7 +376,6 @@ open class BaseActivity : AppCompatActivity(), RequestLifecycle {
     }
 
     companion object {
-
         private const val TAG = "BaseActivity"
     }
 }

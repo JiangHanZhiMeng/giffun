@@ -72,7 +72,6 @@ class InitRequest : Request() {
     }
 
     companion object {
-
         private val URL = GifFun.BASE_URL + "/init"
     }
 }

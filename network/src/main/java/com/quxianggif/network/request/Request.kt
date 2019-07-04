@@ -117,7 +117,7 @@ abstract class Request {
                         } else {
                             ""
                         }
-                        logVerbose(LoggingInterceptor.TAG, result)
+                        logVerbose(LoggingInterceptor.TAG, "网络：$result")
                         val gson = GsonBuilder().disableHtmlEscaping().create()
                         val responseModel = gson.fromJson(result, requestModel)
                         response.close()
@@ -128,13 +128,11 @@ abstract class Request {
                 } catch (e: Exception) {
                     notifyFailure(e)
                 }
-
             }
 
             override fun onFailure(call: Call, e: IOException) {
                 notifyFailure(e)
             }
-
         })
     }
 
@@ -309,5 +307,4 @@ abstract class Request {
 
         const val DELETE = 3
     }
-
 }

@@ -26,13 +26,15 @@ import com.quxianggif.network.request.FetchVCodeRequest
  * @since 19/1/7
  */
 class FetchVCode : Response() {
-
+    /**
+     * companion object 修饰为伴生对象,伴生对象在类中只能存在一个，
+     * 类似于java中的静态方法 Java 中使用类访问静态成员，静态方法。
+     * https://www.jianshu.com/p/14db81e1576a
+     */
     companion object {
-
         fun getResponse(number: String, callback: Callback) {
             FetchVCodeRequest().number(number).listen(callback)
         }
-
     }
 
 }

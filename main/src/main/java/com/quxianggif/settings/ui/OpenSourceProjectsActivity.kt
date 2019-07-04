@@ -28,6 +28,9 @@ import com.quxianggif.settings.adapter.OpenSourceProjectsAdapter
 import com.quxianggif.settings.model.OpenSourceProject
 import kotlinx.android.synthetic.main.activity_open_source_projects.*
 
+/**
+ * 开源项目列表(页面)
+ */
 class OpenSourceProjectsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +63,6 @@ class OpenSourceProjectsActivity : BaseActivity() {
     }
 
     companion object {
-
         const val TAG = "OpenSourceProjectsActivity"
 
         fun actionStart(context: Context) {

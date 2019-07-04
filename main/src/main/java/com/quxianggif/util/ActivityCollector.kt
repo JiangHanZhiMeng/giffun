@@ -29,7 +29,6 @@ import java.util.*
  * @since 18/2/8
  */
 object ActivityCollector {
-
     private const val TAG = "ActivityCollector"
 
     private val activityList = ArrayList<WeakReference<Activity>?>()
@@ -58,5 +57,4 @@ object ActivityCollector {
             activityList.clear()
         }
     }
-
 }

@@ -24,7 +24,6 @@ import android.support.transition.TransitionManager
 import android.transition.Transition
 import android.view.View
 import com.quxianggif.common.callback.SimpleTransitionListener
-import com.quxianggif.core.extension.logDebug
 import com.quxianggif.core.extension.logWarn
 import com.quxianggif.core.extension.showToast
 import com.quxianggif.core.util.AndroidVersion
@@ -35,7 +34,6 @@ import com.quxianggif.network.model.Callback
 import com.quxianggif.network.model.FetchVCode
 import com.quxianggif.network.model.PhoneLogin
 import com.quxianggif.network.model.Response
-import com.quxianggif.network.util.AuthUtil
 import com.quxianggif.util.ResponseHandler
 import kotlinx.android.synthetic.main.activity_login.*
 import org.greenrobot.eventbus.EventBus
@@ -62,6 +60,7 @@ class OpenSourceLoginActivity : LoginActivity() {
 
     override fun setupViews() {
         super.setupViews()
+        //是否开始过渡动画
         val isStartWithTransition = intent.getBooleanExtra(LoginActivity.START_WITH_TRANSITION, false)
         if (AndroidVersion.hasLollipop() && isStartWithTransition) {
             isTransitioning = true
@@ -80,23 +79,27 @@ class OpenSourceLoginActivity : LoginActivity() {
         }
 
         timer = SMSTimer(60 * 1000, 1000)
+
         getVerifyCode.setOnClickListener {
-            val number = phoneNumberEdit.text.toString()
-            if (number.isEmpty()) {
+            val phoneStr = phoneNumberEdit.text.toString()
+            if (phoneStr.isEmpty()) {
                 showToast(GlobalUtil.getString(R.string.phone_number_is_empty))
                 return@setOnClickListener
             }
             val pattern = "^1\\d{10}\$"
-            if (!Pattern.matches(pattern, number)) {
+            if (!Pattern.matches(pattern, phoneStr)) {
                 showToast(GlobalUtil.getString(R.string.phone_number_is_invalid))
                 return@setOnClickListener
             }
             getVerifyCode.isClickable = false
-            FetchVCode.getResponse(number, object : Callback {
+            /**
+             * 联网-获得验证码
+             */
+            FetchVCode.getResponse(phoneStr, object : Callback {
                 override fun onResponse(response: Response) {
                     if (response.status == 0) {
                         timer.start()
-                        verifyCodeEdit.requestFocus()
+                        verifyCodeEdit.requestFocus()//验证码输入框获得焦点
                     } else {
                         showToast(response.msg)
                         getVerifyCode.isClickable = true
@@ -110,20 +113,21 @@ class OpenSourceLoginActivity : LoginActivity() {
                 }
             })
         }
+
         loginButton.setOnClickListener {
             if (isLogin) return@setOnClickListener
-            val number = phoneNumberEdit.text.toString()
-            val code = verifyCodeEdit.text.toString()
-            if (number.isEmpty() || code.isEmpty()) {
+            val phoneStr = phoneNumberEdit.text.toString()
+            val codeStr = verifyCodeEdit.text.toString()
+            if (phoneStr.isEmpty() || codeStr.isEmpty()) {
                 showToast(GlobalUtil.getString(R.string.phone_number_or_code_is_empty))
                 return@setOnClickListener
             }
             val pattern = "^1\\d{10}\$"
-            if (!Pattern.matches(pattern, number)) {
+            if (!Pattern.matches(pattern, phoneStr)) {
                 showToast(GlobalUtil.getString(R.string.phone_number_is_invalid))
                 return@setOnClickListener
             }
-            processLogin(number, code)
+            processLogin(phoneStr, codeStr)
         }
     }
 
@@ -203,6 +207,9 @@ class OpenSourceLoginActivity : LoginActivity() {
         loginBgWallLayout.visibility = View.VISIBLE
     }
 
+    /**
+     * 定义内部类继承自倒计时
+     */
     inner class SMSTimer(millisInFuture: Long, countDownInterval: Long) : CountDownTimer(millisInFuture, countDownInterval) {
 
         override fun onFinish() {
@@ -213,7 +220,6 @@ class OpenSourceLoginActivity : LoginActivity() {
         override fun onTick(millisUntilFinished: Long) {
             getVerifyCode.text = String.format(GlobalUtil.getString(R.string.sms_is_sent), millisUntilFinished / 1000)
         }
-
     }
 
     companion object {

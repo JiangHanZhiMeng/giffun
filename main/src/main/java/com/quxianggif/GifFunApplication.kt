@@ -35,9 +35,13 @@ open class GifFunApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        GifFun.initialize(this)
-        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null)
+        GifFun.initialize(this)//初始化趣享gif核心类库
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null)//初始化友盟
         MobclickAgent.setCatchUncaughtExceptions(false) // 关闭友盟的崩溃采集功能，使用腾讯Bugly
+        /*
+         * LitePal是一款开源的Android数据库框架
+         * https://www.jianshu.com/p/8035eb5da7a2
+         */
         LitePal.initialize(this)
     }
 
