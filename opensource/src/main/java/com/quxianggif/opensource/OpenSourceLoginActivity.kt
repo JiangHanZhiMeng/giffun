@@ -136,6 +136,9 @@ class OpenSourceLoginActivity : LoginActivity() {
         timer.cancel()
     }
 
+    /**
+     * 处理登录
+     */
     private fun processLogin(number: String, code: String) {
         hideSoftKeyboard()
         loginInProgress(true)

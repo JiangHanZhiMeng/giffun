@@ -50,7 +50,6 @@ class GetBaseinfo : Response() {
     var bgImage: String = ""
 
     companion object {
-
         fun getResponse(callback: Callback) {
             GetBaseinfoRequest().listen(callback)
         }

@@ -30,11 +30,49 @@ dependencies {
 
     api "com.android.support:recyclerview-v7:${SUPPORT_LIB_VERSION}"
     api "com.android.support:cardview-v7:${SUPPORT_LIB_VERSION}"
+    /**
+     * 设计支持库
+     * 设计软件包提供的 API 支持向应用中添加 Material Design 组件和模式。
+     * 设计支持库添加了对应用开发者依赖的各种 Material Design 组件和模式的支持，
+     * 例如抽屉式导航栏、浮动操作按钮 (FAB)、快捷信息栏和标签页。
+     * http://mobile.51cto.com/android-556878.htm
+     */
     api "com.android.support:design:${SUPPORT_LIB_VERSION}"
+    /**
+     * v7 palette 库
+     *
+     * v7 palette 支持库包含 Palette 类，此类让您可以从图像中抽取突出颜色。
+     * 例如，音乐应用可以使用 Palette 对象从专辑封面抽取主要颜色，
+     * 然后使用这些颜色创建一个色彩协调的歌曲标题卡。
+     * http://mobile.51cto.com/android-556878.htm
+     */
     api "com.android.support:palette-v7:${SUPPORT_LIB_VERSION}"
+    /**
+     * 百分比支持库
+     * 百分比软件包提供的 API 支持向应用中添加基于百分比的尺寸并对其进行管理。
+     * 百分比支持库添加了对 PercentLayoutHelper.PercentLayoutParams 接口和各种类的支持，
+     * 例如 PercentFrameLayout 和 PercentRelativeLayout。
+     * http://mobile.51cto.com/android-556878.htm
+     */
     api "com.android.support:percent:${SUPPORT_LIB_VERSION}"
+    /**
+     * v7 Preference 支持库
+     * 首选项软件包提供的 API 支持添加 preference 对象(例如 CheckBoxPreference 和 ListPreference)，方便用户修改 UI 设置。
+     * v7 Preference 库添加了对接口(例如 Preference.OnPreferenceChangeListener 和 Preference.OnPreferenceClickListener)
+     * 以及类(例如 CheckBoxPreference 和 ListPreference)的支持。
+     * http://mobile.51cto.com/android-556878.htm
+     */
     api "com.android.support:preference-v7:${SUPPORT_LIB_VERSION}"
     api "com.android.support:preference-v14:${SUPPORT_LIB_VERSION}"
+    /**
+     * Dalvik 可执行文件分包支持库
+     *
+     * 此库可以为使用多个 Dalvik Executable (DEX) 文件开发应用提供支持。
+     * 引用超过 65536 个方法的应用须使用 Dalvik 可执行文件分包配置。
+     * 如需了解有关使用 Dalvik 可执行文件分包的详细信息，
+     * 请参阅使用超过 6.4 万种方法开发应用。
+     * http://mobile.51cto.com/android-556878.htm
+     */
     api 'com.android.support:multidex:1.0.3'
     api 'com.android.support.constraint:constraint-layout:1.1.3'
 
@@ -42,6 +80,11 @@ dependencies {
     api project(':network')
 
     api 'org.greenrobot:eventbus:3.1.1'
+    /**
+     * Android圆形图片加载，加载本地及网络图片
+     * http://www.jianshu.com/p/49668ad64cbe
+     * https://github.com/crazyandcoder/circleimageview
+     */
     api 'de.hdodenhof:circleimageview:2.1.0'
     api 'com.umeng.umsdk:analytics:7.5.4'
     api 'com.umeng.umsdk:common:1.5.4'

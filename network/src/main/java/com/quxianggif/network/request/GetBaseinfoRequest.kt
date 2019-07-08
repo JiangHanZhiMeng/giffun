@@ -60,7 +60,6 @@ class GetBaseinfoRequest : Request() {
     }
 
     companion object {
-
         private val URL = GifFun.BASE_URL + "/user/baseinfo"
     }
 }

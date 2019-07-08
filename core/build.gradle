@@ -28,9 +28,22 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
+    /**
+     * Android相机拍照方向旋转的解决方案：ExifInterface
+     * https://www.jianshu.com/p/95cd95e961d7
+     */
     api "com.android.support:exifinterface:${SUPPORT_LIB_VERSION}"
     api 'com.squareup.okhttp3:okhttp:3.10.0'
     api 'com.google.code.gson:gson:2.8.5'
+    /**
+     * 七牛云 私有云存储
+     * https://developer.qiniu.com/kodo/sdk/1236/android
+     */
     api 'com.qiniu:qiniu-android-sdk:7.3.3'
+
+    /**
+     * Android数据库高手秘籍(十)，如何在Kotlin中更好地使用LitePal
+     * https://blog.csdn.net/guolin_blog/article/details/82714414
+     */
     api 'org.litepal.android:kotlin:2.1.0'
 }

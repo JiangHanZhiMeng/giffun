@@ -31,7 +31,8 @@ import java.net.NoRouteToHostException
 import java.net.SocketTimeoutException
 
 /**
- * 对服务器的返回进行相应的逻辑处理。注意此类只处理公众的返回逻辑，涉及具体的业务逻辑，仍然交由接口调用处自行处理。
+ * 对服务器的返回进行相应的逻辑处理。
+ * 注意此类只处理公众的返回逻辑，涉及具体的业务逻辑，仍然交由接口调用处自行处理。
  *
  * @author guolin
  * @since 17/2/21
